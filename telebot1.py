@@ -9,13 +9,12 @@ books_by_topic = {
     'фантастика': ['Dune', 'Neuromancer', 'The Hitchhiker\'s Guide to the Galaxy'],
     'роман': ['Pride and Prejudice', 'To Kill a Mockingbird', 'Jane Eyre'],
     'детектив': ['Sherlock Holmes', 'The Girl with the Dragon Tattoo', 'Gone Girl'],
-    # Add more genres and corresponding book lists as needed
 }
 
 # Список авторов
 authors = ['Agatha Christie', 'Stephen King', 'Jane Austen', 'Isaac Asimov', 'J.K. Rowling']
 
-# Токен вашего бота
+# Токен бота
 token = 'token'
 bot = telebot.TeleBot(token)
 
@@ -33,8 +32,6 @@ def recommend(message):
             book = random.choice(books_by_topic[category])
             bot.reply_to(message, f'Рекомендую книгу по теме "{category}": {book}')
         elif category in authors:
-            # If the entered category is an author, recommend a random book from the author
-            # (Assuming each author has multiple books in the list)
             author_books = [book for genre_books in books_by_topic.values() for book in genre_books if category in book]
             if author_books:
                 book = random.choice(author_books)
